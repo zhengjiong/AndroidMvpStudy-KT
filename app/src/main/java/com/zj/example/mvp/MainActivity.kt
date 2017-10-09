@@ -3,7 +3,7 @@ package com.zj.example.mvp
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import com.zj.example.mvp.presenter.LoginPresenterImpl
+import com.zj.example.mvp.presenter.Presenter
 import com.zj.example.mvp.view.LoginView
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -12,18 +12,21 @@ import kotlinx.android.synthetic.main.activity_main.*
  * Date: 2017/10/8 16:50
  */
 class MainActivity : AppCompatActivity(), LoginView {
-    lateinit var loginPresenter: LoginPresenterImpl
+    lateinit var loginPresenter: Presenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        loginPresenter = LoginPresenterImpl(this)
-
+        Presenter(this)
 
         btnLogin.setOnClickListener {
             loginPresenter.login(editUsername.text.trim().toString(), editPassword.text.trim().toString())
         }
+    }
+
+    override fun setPresenter(presenter: Presenter) {
+        this.loginPresenter = presenter
     }
 
     override fun loginSuccess() {

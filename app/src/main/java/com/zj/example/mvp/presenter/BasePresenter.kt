@@ -5,5 +5,5 @@ package com.zj.example.mvp.presenter
  * date: 2017/10/8 17:07
  */
 interface BasePresenter{
-
+    fun start()
 }
